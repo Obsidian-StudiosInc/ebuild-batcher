@@ -11,7 +11,11 @@ revert all modifications via git reset and checkout. Therefore should be
 
 ## Usage
 The script functions off 2 variables and 1 function, all pretty self 
-explanatory.
+explanatory. Place the variables and function in a file/script of its 
+own in any location you choose. Default location is in the provided 
+scripts directory. That file/script is passed to ebuild-batcher.sh as 
+the first argument, and sourced before run.
+
 
 ```bash
 # String commit message
@@ -20,9 +24,10 @@ COMMIT_MSG="Change being made"
 # Array of ebuilds to be modified
 PKGS=( $( grep -ls 'EAPI="\?5"\?' */*/*ebuild  ) )
 
-# Function of commands to run
+# Function of commands to run, return 0 on success, 1 on failure
 batch_cmds() {
-	echo "Making ebuild modification..."
+	echo "Making ebuild modification..." || return 1
+	return 0
 }
 
 ```
