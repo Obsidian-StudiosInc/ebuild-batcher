@@ -16,6 +16,6 @@ PKGS=($( grep -ls x86 */*/*ebuild ))
 
 batch_cmds() {
 	echo "${COMMIT_MSG} -> ${ebuild}"
-	sed -i -e "s| ~x86||" ${ebuild} || return 1
+	sed -i -e "s| ~x86\(-[a-z]*\)\?||g" ${ebuild} || return 1
 	return 0
 }
