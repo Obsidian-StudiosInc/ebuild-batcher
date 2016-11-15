@@ -5,6 +5,23 @@
 #
 # Distributed under the terms of The GNU Public License v3.0 (GPLv3)
 
+while :
+do
+	case "$1" in
+		-m | --merge)
+			MERGE=0
+			shift
+			;;
+		-*)
+			echo "Error: Unknown option: $1 >&2"
+			exit 2
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
 if [[ ${1} ]]; then
 	source ${1}
 else
@@ -48,8 +65,10 @@ batch() {
 		ebuild ${ebuild} digest
 		! skip $? && continue
 
-		sudo emerge -qv1 =${category}/${ebuild/\.ebuild/}
-		! skip $? && continue
+		if [[ ${MERGE} ]]; then
+			sudo emerge -qv1 =${category}/${ebuild/\.ebuild/}
+			! skip $? && continue
+		fi
 
 		git add .
 		repoman
