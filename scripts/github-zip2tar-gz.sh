@@ -18,7 +18,7 @@ batch_cmds() {
 	echo "Switching -> ${ebuild}"
 	sed -i 's/\.zip/\.tar\.gz/g' ${ebuild} || return 1
 
-	if [[ $(grep -q "app-arch/unzip" ${ebuild})  ]]; then
+	if [[ $(grep "app-arch/unzip" ${ebuild})  ]]; then
 		sed -i 's|app-arch/unzip.*||' ${ebuild} || return 1
 	fi
 	return 0
