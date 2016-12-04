@@ -1,4 +1,7 @@
 # ebuild-batcher.sh
+[![License](http://img.shields.io/badge/license-GPLv3-blue.svg?style=plastic)](https://github.com/Obsidian-StudiosInc/ebuild-batcher/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/Obsidian-StudiosInc/ebuild-batcher.svg?branch=master)](https://travis-ci.org/Obsidian-StudiosInc/ebuild-batcher)
+
 Experimental script for making the same change across all ebuilds that 
 need such change. It can be used for things like bumping EAPI, or making 
 other changes to ebuilds. This can save allot of time by making minor 
