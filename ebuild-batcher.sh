@@ -68,11 +68,11 @@ batch() {
 		batch_cmds
 		! skip $? && continue
 
-		ebuild ${ebuild} digest
+		ebuild "${ebuild}" digest
 		! skip $? && continue
 
 		if [[ ${MERGE} ]]; then
-			sudo emerge -qv1 =${category}/${ebuild/\.ebuild/}
+			sudo emerge -qv1 ="${category}/${ebuild/\.ebuild/}"
 			! skip $? && continue
 		fi
 
