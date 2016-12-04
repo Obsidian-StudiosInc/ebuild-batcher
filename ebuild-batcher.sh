@@ -46,7 +46,7 @@ skip() {
 		git checkout -- .
 		echo "Skipping -> ${pkg}"
 	fi
-	return ${1}
+	return "${1}"
 }
 
 batch() {
