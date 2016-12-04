@@ -63,7 +63,7 @@ batch() {
 		category="$( dirname "${cat_dir}" )"
 		ebuild="$( basename "${pkg}" )"
 
-		cd "${TREE}/${cat_dir}"
+		cd "${TREE}/${cat_dir}" || continue
 
 		batch_cmds
 		! skip $? && continue
