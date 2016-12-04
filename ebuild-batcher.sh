@@ -51,7 +51,7 @@ skip() {
 
 batch() {
 	local pkg
-	for pkg in ${PKGS[@]}; do
+	for pkg in "${PKGS[@]}"; do
 		# skip symlinks, modify real packages only
 		[[ -L ${pkg} ]] && continue
 		local cat_dir="$( dirname ${pkg} )"
