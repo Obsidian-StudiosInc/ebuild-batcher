@@ -23,7 +23,8 @@ do
 done
 
 if [[ ${1} ]]; then
-	source ${1}
+	# shellcheck disable=SC1090
+	. "${1}"
 else
 	echo "Error batch command file not specified"
 	exit 1
