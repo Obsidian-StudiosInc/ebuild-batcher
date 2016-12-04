@@ -54,9 +54,14 @@ batch() {
 	for pkg in "${PKGS[@]}"; do
 		# skip symlinks, modify real packages only
 		[[ -L ${pkg} ]] && continue
-		local cat_dir="$( dirname ${pkg} )"
-		local category="$( dirname ${cat_dir} )"
-		local ebuild="$( basename ${pkg} )"
+
+		local cat_dir
+		local category
+		local ebuild
+
+		cat_dir="$( dirname "${pkg}" )"
+		category="$( dirname "${cat_dir}" )"
+		ebuild="$( basename "${pkg}" )"
 
 		cd "${TREE}/${cat_dir}"
 
