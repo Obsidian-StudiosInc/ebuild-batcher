@@ -12,11 +12,11 @@ TREE="/usr/portage/local/os-xtoo"
 
 cd ${TREE} || exit 1
 
-PKGS=($( grep -ls "github.*zip" */*/*ebuild ))
+PKGS=($( grep -ls "github.com" */*/*ebuild ))
 
 batch_cmds() {
 	echo "Switching -> ${ebuild}"
-	sed -i 's/\.zip/\.tar\.gz/g' ${ebuild} || return 1
+#	sed -i 's/\.zip/\.tar\.gz/g' ${ebuild} || return 1
 
 	if [[ $(grep "app-arch/unzip" ${ebuild})  ]]; then
 		sed -i 's|app-arch/unzip.*||' ${ebuild} || return 1
