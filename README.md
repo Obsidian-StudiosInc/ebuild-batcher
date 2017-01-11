@@ -1,5 +1,5 @@
 # ebuild-batcher.sh
-[![License](https://img.shields.io/badge/license-GPLv3-blue.svg?colorB=9977bb&style=plastic)](https://github.com/Obsidian-StudiosInc/ebuild-batcher/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-GPLv3-9977bb.svg?style=plastic)](https://github.com/Obsidian-StudiosInc/ebuild-batcher/blob/master/LICENSE)
 [![Build Status](https://img.shields.io/travis/Obsidian-StudiosInc/ebuild-batcher/master.svg?colorA=9977bb&style=plastic)](https://travis-ci.org/Obsidian-StudiosInc/ebuild-batcher)
 [![Build Status](https://img.shields.io/shippable/5840e5d1b5bc7810005ff861/master.svg?colorA=9977bb&style=plastic)](https://app.shippable.com/projects/5840e5d1b5bc7810005ff861/)
 
