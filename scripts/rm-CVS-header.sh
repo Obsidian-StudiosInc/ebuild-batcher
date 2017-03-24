@@ -9,7 +9,7 @@
 
 COMMIT_MSG="Removed CVS header"
 TREE="/usr/portage/local/os-xtoo"
-PATTERN="\\\$Id\\\$"
+PATTERN="\#\ \\\$"
 
 cd ${TREE} || exit 1
 
