@@ -52,9 +52,6 @@ skip() {
 batch() {
 	local pkg
 	for pkg in "${PKGS[@]}"; do
-		# skip symlinks, modify real packages only
-		[[ -L ${pkg} ]] && continue
-
 		local cat_dir
 		local category
 		local ebuild
@@ -64,6 +61,9 @@ batch() {
 		ebuild="$( basename "${pkg}" )"
 
 		cd "${TREE}/${cat_dir}" || continue
+
+		# skip symlinks, modify real packages only
+		[[ -L "${ebuild}" ]] && continue
 
 		batch_cmds
 		! skip $? && continue
