@@ -22,20 +22,20 @@ if [[ -z ${4} ]]; then
 	exit 1
 fi
 
-PKG="$2"
+MY_PKG="$2"
 SLOT="$3"
 PATTERN="$4"
 
-COMMIT_MSG="Bump slot -> ${PKG}:${SLOT}"
+COMMIT_MSG="Bump slot -> ${MY_PKG}:${SLOT}"
 TREE="/usr/portage/local/os-xtoo"
 
 cd ${TREE} || exit 1
 
-PKGS=($( grep -ls "${PKG}:${PATTERN}" */*/*ebuild ))
+PKGS=($( grep -ls "${MY_PKG}:${PATTERN}" */*/*ebuild ))
 
 batch_cmds() {
-	echo "Updating ${PKG} -> ${ebuild}"
-	sed -i -e "s|${PKG}:${PATTERN}|${PKG}:${SLOT}|" ${ebuild} \
+	echo "Updating ${MY_PKG} -> ${ebuild}"
+	sed -i -e "s|${MY_PKG}:${PATTERN}|${MY_PKG}:${SLOT}|" ${ebuild} \
 		|| return 1
 	return 0
 }
