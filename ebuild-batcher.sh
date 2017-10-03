@@ -5,6 +5,32 @@
 #
 # Distributed under the terms of The GNU Public License v3.0 (GPLv3)
 
+VERSION="Version 0.0"
+
+help() {
+	local me
+        me="${0##*/}"
+        echo "Ebuild batcher - Change a batch of ebuild(s)
+Usage:
+    ${me} <script> [script options]
+    ${me} -m <script> [script options]
+
+ Global Options:
+  -m, --merge                Merge package before commit
+
+ GNU Options:
+
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+  -V, --version              Print program version
+
+Copyright 2016-2017 Obsidian-Studios, Inc.
+Distributed under the terms of The GNU Public License v3.0 (GPLv3)
+"
+	[[ $1 ]] && echo "Error: $1"
+	exit "$2"
+}
+
 while :
 do
 	case "$1" in
@@ -12,9 +38,15 @@ do
 			MERGE=0
 			shift
 			;;
+		-V | --version)
+		        echo "${VERSION}"
+        		exit 0
+			;;
+		-? | --help)
+			help "" 0
+			;;
 		-*)
-			echo "Error: Unknown option: $1 >&2"
-			exit 2
+			help "Error: Unknown option: $1 >&2" 2
 			;;
 		*)
 			break
@@ -26,18 +58,15 @@ if [[ ${1} ]]; then
 	# shellcheck disable=SC1090
 	. "${1}"
 else
-	echo "Error batch command file not specified"
-	exit 1
+	help "Error batch command file not specified" 1
 fi
 
 if [[ ! ${COMMIT_MSG} ]]; then
-	echo "COMMIT_MSG=${COMMIT_MSG}"
-	exit 1
+	help "Error COMMIT_MSG not set" 1
 fi
 
 if [[ ! ${PKGS} ]]; then
-	echo "Error PKGS not set"
-	exit 1
+	help "Error PKGS not set"
 fi
 
 skip() {
