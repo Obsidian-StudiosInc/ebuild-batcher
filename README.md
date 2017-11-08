@@ -35,3 +35,28 @@ batch_cmds() {
 }
 
 ```
+
+### Bump slots
+Bumping slots on packages is easy using the provided slot-bumper.sh 
+script. Just pass a few arguments;
+ 1. Package Name
+ 2. New Slot
+ 3. Old Slot Pattern, plain or regex
+
+Example
+```bash
+./ebuild-batcher.sh scripts/slot-bumper.sh icu4j 0 59
+```
+
+### sed A to B
+Sometimes you need to make a change in an ebuild, from A to B. Doing so 
+is trivial with the provided sed_a_b.sh script. Just pass a few arguments;
+ 1. Commit message prefix, A to B will be added
+ 2. Replacement sed pattern (A), plain or regex
+ 3. Replacement (B)
+
+Example
+```bash
+./ebuild-batcher.sh scripts/sed_a_b.sh "Bump eclipse slot" "\"4.6\"" "\"4.7\""
+```
+*A is used for both grep and sed.*
