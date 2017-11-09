@@ -35,7 +35,8 @@ PKGS=($( grep -ls "${MY_PKG}:${PATTERN}" */*/*ebuild ))
 
 batch_cmds() {
 	echo "Updating ${MY_PKG} -> ${ebuild}"
-	sed -i -e "s|${MY_PKG}:${PATTERN}|${MY_PKG}:${SLOT}|" ${ebuild} \
+	sed -i --follow-symlinks -e \
+		"s|${MY_PKG}:${PATTERN}|${MY_PKG}:${SLOT}|" ${ebuild} \
 		|| return 1
 	return 0
 }
