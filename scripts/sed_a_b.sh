@@ -34,6 +34,6 @@ PKGS=($( grep -ls "${_A}" */*/*ebuild ))
 
 batch_cmds() {
 	echo "${ebuild}: ${COMMIT_MSG}"
-	sed -i "s|${_A}|${_B}|g" ${ebuild} || return 1
+	sed -i --follow-symlinks -e "s|${_A}|${_B}|g" ${ebuild} || return 1
 	return 0
 }
