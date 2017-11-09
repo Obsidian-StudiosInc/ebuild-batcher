@@ -91,8 +91,8 @@ batch() {
 
 		cd "${TREE}/${cat_dir}" || continue
 
-		# skip symlinks, modify real packages only
-		[[ -L "${ebuild}" ]] && continue
+		# skip 999, modify version only
+		[[ "${ebuild}" == *9999* ]] && continue
 
 		batch_cmds
 		! skip $? && continue
