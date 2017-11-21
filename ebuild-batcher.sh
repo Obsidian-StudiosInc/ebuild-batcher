@@ -16,6 +16,7 @@ Usage:
     ${me} -m <script> [script options]
 
  Global Options:
+  -c, --commit               Commit changes
   -m, --merge                Merge package before commit
 
  GNU Options:
@@ -34,6 +35,10 @@ Distributed under the terms of The GNU Public License v3.0 (GPLv3)
 while :
 do
 	case "$1" in
+		-c | --commit)
+			COMMIT=0
+			shift
+			;;
 		-m | --merge)
 			MERGE=0
 			shift
@@ -105,12 +110,14 @@ batch() {
 			! skip $? && continue
 		fi
 
-		git add .
+		[[ ${NOCOMMIT} ]] && git add .
 		repoman
 		! skip $? && continue
 
-		repoman commit -m "${cat_dir}: ${COMMIT_MSG}"
-		! skip $? && continue
+		if [[ ${COMMIT} ]]; then
+			repoman commit -m "${cat_dir}: ${COMMIT_MSG}"
+			! skip $? && continue
+		fi
 	done
 }
 
