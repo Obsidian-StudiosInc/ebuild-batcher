@@ -71,7 +71,7 @@ if [[ ! ${COMMIT_MSG} ]]; then
 fi
 
 if [[ ! ${PKGS} ]]; then
-	help "Error PKGS not set"
+	help "Error PKGS not set" 1
 fi
 
 skip() {
