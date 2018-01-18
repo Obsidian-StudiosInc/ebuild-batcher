@@ -106,7 +106,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${MERGE} ]]; then
-			sudo emerge -qv1 ="${category}/${ebuild/\.ebuild/}"
+			sudo emerge -qkv1 ="${category}/${ebuild/\.ebuild/}"
 			! skip $? && continue
 		fi
 
