@@ -106,6 +106,9 @@ batch() {
 		batch_cmds
 		! skip $? && continue
 
+		# anything change?
+		[[ $(git diff . | wc -l) -eq 0 ]] && continue
+
 		ebuild "${ebuild}" digest
 		! skip $? && continue
 
