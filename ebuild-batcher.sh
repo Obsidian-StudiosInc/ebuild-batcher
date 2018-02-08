@@ -84,17 +84,17 @@ skip() {
 }
 
 batch() {
-	local pkg
-	for pkg in "${PKGS[@]}"; do
-		local cat_dir
+	local p
+	for p in "${PKGS[@]}"; do
 		local category
 		local ebuild
+		local pkg
 
-		cat_dir="$( dirname "${pkg}" )"
-		category="$( dirname "${cat_dir}" )"
-		ebuild="$( basename "${pkg}" )"
+		cd "${TREE}/$( dirname "${p}" )" || continue
 
-		cd "${TREE}/${cat_dir}" || continue
+		category="$( basename "$( dirname "${PWD}" )" )"
+		ebuild="${p##*\/}"
+		pkg="${p%%\/*}"
 
 		# skip 999, modify version only
 		[[ "${ebuild}" == *9999* ]] && continue
@@ -106,7 +106,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${MERGE} ]]; then
-			sudo emerge -qkv1 ="${category}/${ebuild/\.ebuild/}"
+			sudo emerge -qkv1 ="${ebuild/\.ebuild/}"
 			! skip $? && continue
 		fi
 
@@ -115,7 +115,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${COMMIT} ]]; then
-			repoman commit -m "${cat_dir}: ${COMMIT_MSG}"
+			repoman commit -m "${category}: ${COMMIT_MSG}"
 			! skip $? && continue
 		fi
 	done
