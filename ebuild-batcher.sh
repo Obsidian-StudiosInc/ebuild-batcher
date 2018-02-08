@@ -39,6 +39,10 @@ do
 			COMMIT=0
 			shift
 			;;
+		-k | --usepkg)
+			USEPKG="k"
+			shift
+			;;
 		-m | --merge)
 			MERGE=0
 			shift
@@ -106,7 +110,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${MERGE} ]]; then
-			sudo emerge -qkv1 ="${ebuild/\.ebuild/}"
+			sudo emerge -q"${USEPKG}"v1 ="${ebuild/\.ebuild/}"
 			! skip $? && continue
 		fi
 
