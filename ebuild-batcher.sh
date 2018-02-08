@@ -115,7 +115,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${COMMIT} ]]; then
-			repoman commit -m "${category}: ${COMMIT_MSG}"
+			repoman commit -m "${category}/${pkg}: ${COMMIT_MSG}"
 			! skip $? && continue
 		fi
 	done
