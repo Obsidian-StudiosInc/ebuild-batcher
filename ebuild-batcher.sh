@@ -113,7 +113,7 @@ batch() {
 		! skip $? && continue
 
 		if [[ ${MERGE} ]]; then
-			sudo emerge -q"${USEPKG}"v1 ="${ebuild/\.ebuild/}"
+			sudo emerge -q"${USEPKG}"v1 ="${category}/${ebuild/\.ebuild/}"
 			! skip $? && continue
 		fi
 
