@@ -98,7 +98,7 @@ batch() {
 
 		category="$( basename "$( dirname "${PWD}" )" )"
 		ebuild="${p##*\/}"
-		pkg="${p%%\/*}"
+		pkg="$( basename "${PWD}" )"
 
 		# skip 999, modify version only
 		[[ "${ebuild}" == *9999* ]] && continue
