@@ -117,7 +117,7 @@ batch() {
 			! skip $? && continue
 		fi
 
-		[[ ${NOCOMMIT} ]] && git add .
+		[[ ${COMMIT} ]] && git add .
 		repoman
 		! skip $? && continue
 
